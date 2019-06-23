@@ -1,6 +1,6 @@
 # データ構造サンプルとテスト
 
-[GoDoc](https://godoc.org/github.com/mamemomonga/memobook-go/pokemondata)
+[![GoDoc](https://godoc.org/github.com/mamemomonga/memobook-go/pokemondata?status.svg)](https://godoc.org/github.com/mamemomonga/memobook-go/pokemondata)
 
 パッケージとして外部から読み込むためのサンプルデータ。
 およびユニットテストのサンプル
