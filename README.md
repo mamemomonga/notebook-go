@@ -1,6 +1,6 @@
 # Goの手帳
 
-[![GoDoc](https://godoc.org/github.com/mamemomonga/memobook-go?status.svg)](https://godoc.org/github.com/mamemomonga/memobook-go)
+[![GoDoc](https://godoc.org/github.com/mamemomonga/notebook-go?status.svg)](https://godoc.org/github.com/mamemomonga/notebook-go)
 
 忘れっぽいので
 
