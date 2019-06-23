@@ -1,6 +1,5 @@
 package main
 
-
 // GCEInstanceList GCE Instance List 構造体
 type GCEInstanceList struct {
 	Kind  string `json:"kind"`
