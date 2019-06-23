@@ -1,0 +1,8 @@
+
+template:
+  Name: "ぐぐーる"
+  HomePage: "https://google.com/" 
+  Favorites:
+    - "Go"
+    - "Java"
+    - "JavaScript"
