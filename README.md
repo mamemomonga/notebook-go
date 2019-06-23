@@ -1,5 +1,6 @@
 # Goの手帳
 
+[![GoDoc](https://godoc.org/github.com/mamemomonga/memobook-go?status.svg)](https://godoc.org/github.com/mamemomonga/memobook-go)
 
 忘れっぽいので
 
