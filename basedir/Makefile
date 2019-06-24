@@ -19,7 +19,7 @@ BUILDARGS_STATIC := GO_ENABLED=0 go build -a -tags netgo -installsuffix netgo \
 	-ldflags="-s -w -X 'main.Version=$(VERSION)' -X 'main.Revision=$(REVISION)' -extldflags '-static'"
 
 # main()のあるディレクトリ
-MAINSRCDIR := ./cmd/
+MAINSRCDIR := ./cmd
 
 # すべてのソース
 SRCS := $(shell find . -name '*.go')
@@ -38,7 +38,7 @@ static: $(BINDIR)/$(NAME)
 
 # 実行バイナリ
 $(BINDIR)/$(NAME):
-	$(BUILDARGS) -o $(BINDIR)/$(NAME) ./$(MAINSRCDIR)
+	$(BUILDARGS) -o $(BINDIR)/$(NAME) ./$(MAINSRCDIR)/
 
 # マルチアーキテクチャ
 # 対応リスト https://golang.org/doc/install/source#environment
@@ -50,7 +50,7 @@ multiarch:
 	GOOS=linux   GOARCH=arm   $(MAKE) multiarch-build
 
 multiarch-build:
-	$(BUILDARGS_STATIC) -o $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH) ./$(MAINSRCDIR)
+	$(BUILDARGS_STATIC) -o $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH) ./$(MAINSRCDIR)/
 	@if [ "$(GOOS)" == "windows" ]; then mv $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH) $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH).exe; fi
 
 # 掃除
