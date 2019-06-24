@@ -3,13 +3,18 @@
 /*
 Package basedir ベースディレクトリ
 
+
 Warning 注意
+
 
 頻繁に更新される可能性があるのでこのパッケージをを他のプログラムから直接importされることはおすすめしません。
 もし利用される場合はソースをコピーしてご自分の用途に合うように調整してご利用ください。
 
 
 Usage 使い方
+
+
+main.go
 
 	package main
 	import "github.com/notebook-go/basedir"
