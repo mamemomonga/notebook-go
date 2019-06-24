@@ -25,10 +25,10 @@ func main() {
 	log.Printf("Version: %s Revision: %s\n", Version, Revision)
 
 	// 実行バイナリの一階層上を得る
-	basedir := GetBaseDir("..")
+	basedir := GetBaseDirRel(".")
 	log.Printf("Basedir: %s\n", basedir)
 
 	// フォルダがなければ作成する
-	CreateDirIfNotExists(basedir, "var", 0777)
+	CreateDirIfNotExists(GetBaseDirRel("var"), 0777)
 
 }
