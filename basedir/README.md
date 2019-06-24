@@ -6,10 +6,12 @@
 ## Makefile
 
 * Makefile で Versionをversionファイルから、RevisionをGitのコミットIDから設定している
-* make でダイナミックリンク版、make static でスタティックリンク版が作成される
+* make でダイナミックリンク版が生成される
+* make static でスタティックリンク版が作成される
+* make multiarch でマルチアーキテクチャ スタティックリンク版が生成される
 * スタティックリンク版ではCGOは使用できない
 
-## GetBaseDirの挙動
+## GetBaseDir
 
 * 素の go run, go build で実行された場合はVersion, Revisionが空になる。
 * Versionが空の場合は go run で実行されている可能性があるため、カレントディレクトリを返す。

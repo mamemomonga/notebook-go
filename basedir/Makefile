@@ -1,24 +1,58 @@
-NAME       := basedir
-VERSION    := v$(shell cat version)
-REVISION   := $(shell git rev-parse --short HEAD)
 
-BUILDARGS_STATIC := CGO_ENABLED=0 go build -a -tags netgo -installsuffix netgo \
-	-ldflags="-s -w -X 'main.Version=$(VERSION)' -X 'main.Revision=$(REVISION)' -extldflags '-static'"
+# -----------------------------------------
 
+# 実行ファイル名
+NAME      := basedir
+
+# バージョン
+VERSION   := v$(shell cat version)
+
+# リビジョン
+REVISION  := $(shell git rev-parse --short HEAD)
+
+# 標準ビルド(dynamic)
 BUILDARGS := go build -a \
 	-ldflags="-s -w -X 'main.Version=$(VERSION)' -X 'main.Revision=$(REVISION)'"
 
+# 静的ビルド(static)
+BUILDARGS_STATIC := GO_ENABLED=0 go build -a -tags netgo -installsuffix netgo \
+	-ldflags="-s -w -X 'main.Version=$(VERSION)' -X 'main.Revision=$(REVISION)' -extldflags '-static'"
+
+# ソース
 SRCS := $(shell find . -name '*.go')
 
-build: bin/basedir
+# 出力ディレクトリ
+BINDIR := bin
 
-static:
-	$(BUILDARGS_STATIC) -o bin/basedir 
+# -----------------------------------------
 
-bin/basedir: $(SRCS)
-	$(BUILDARGS) -o bin/basedir
+# 標準ビルド(dynamic)
+dynamic: bin/$(NAME)
 
+# 静的ビルド(static)
+static: BUILDARGS=$(BUILDARGS_STATIC)
+static: $(BINDIR)/$(NAME)
+
+# 実行バイナリ
+bin/$(NAME):
+	$(BUILDARGS) -o $(BINDIR)/$(NAME)
+
+# マルチアーキテクチャ
+# 対応リスト https://golang.org/doc/install/source#environment
+multiarch:
+	GOOS=darwin  GOARCH=amd64 $(MAKE) multiarch-build
+	GOOS=windows GOARCH=amd64 $(MAKE) multiarch-build
+	GOOS=linux   GOARCH=amd64 $(MAKE) multiarch-build
+	GOOS=linux   GOARCH=arm64 $(MAKE) multiarch-build
+	GOOS=linux   GOARCH=arm   $(MAKE) multiarch-build
+
+multiarch-build:
+	$(BUILDARGS_STATIC) -o $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH)
+	@if [ "$(GOOS)" == "windows" ]; then mv $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH) $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH).exe; fi
+
+# 掃除
 clean:
-	rm -rf bin var
+	$(RM) -r $(BINDIR) var
 
-.PHONY: run clean static
+.PHONY: dynamic static build multiarch multiarch-build
+
