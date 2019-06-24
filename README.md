@@ -19,13 +19,11 @@
 * [ベースディレクトリ](./basedir)
 * [データ構造サンプルとテスト](./pokemon-data)
 
-## ログ・メッセージ・ターミナル
-* [カラフルなメッセージとエスケープシーケンス](./colormessage)
-* [CoLog](./colog)
-
-## コマンド
-* [サブコマンドを作る](./subcommand)
-* [コマンド引数のフラグを得る](./flag)
+## CLI
+* [カラフルなメッセージとエスケープシーケンス](./cli/colormessage)
+* [CoLog](./cli/colog)
+* [サブコマンドを作る](./cli/subcommand)
+* [コマンド引数のフラグを得る](./cli/flag)
 
 ## プロセス
 * [コマンドの実行](./runcommand)

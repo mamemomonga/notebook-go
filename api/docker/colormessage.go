@@ -1,1 +1,1 @@
-../../colormessage/colormessage.go
+../../cli/colormessage/colormessage.go
