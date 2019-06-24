@@ -26,7 +26,7 @@
 
 Makefileのある位置から実行した場合、すべてBasedirが同じになっていればOK
 
-	$ go run ./cmd/
+	$ go run ./basedir
 	2019/06/24 12:15:04 Version:  Revision:
 	2019/06/24 12:15:04 Basedir: (略)/notebook-go/basedir
 	2019/06/24 12:15:04 Mkdir: (略)/notebook-go/basedir/var

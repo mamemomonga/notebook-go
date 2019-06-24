@@ -19,7 +19,7 @@ BUILDARGS_STATIC := GO_ENABLED=0 go build -a -tags netgo -installsuffix netgo \
 	-ldflags="-s -w -X 'main.Version=$(VERSION)' -X 'main.Revision=$(REVISION)' -extldflags '-static'"
 
 # main()のあるディレクトリ
-MAINSRCDIR := ./cmd
+MAINSRCDIR := ./basedir
 
 # すべてのソース
 SRCS := $(shell find . -name '*.go')
