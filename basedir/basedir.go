@@ -8,7 +8,7 @@ Package basedir ベースディレクトリ
 頻繁に更新される可能性があるのでこのファイルを他のプログラムからimportされることはおすすめしません。
 もし利用される場合はソースをコピーしてご自分の用途に合うように調整してご利用ください。
 
-使い方:
+使い方
 
 	package main
 	import "github.com/notebook-go/basedir"
