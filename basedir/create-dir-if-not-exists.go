@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 )
 
-// フォルダがなければ新規に作成する
-func createDirIfNotExists(basedir string, path string, mode os.FileMode) (err error) {
+// CreateDirIfNotExists フォルダがなければ新規に作成する
+func CreateDirIfNotExists(basedir string, path string, mode os.FileMode) (err error) {
 	path = filepath.Join(basedir, path)
 	if _, err := os.Stat(path); os.IsNotExist(err) {
 		os.Mkdir(path, mode)
