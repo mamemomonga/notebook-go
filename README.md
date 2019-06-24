@@ -24,6 +24,7 @@
 * [CoLog](./cli/colog)
 * [サブコマンドを作る](./cli/subcommand)
 * [コマンド引数のフラグを得る](./cli/flag)
+* [Cobraを使う](./cli/cobra)
 
 ## プロセス
 * [コマンドの実行](./runcommand)
