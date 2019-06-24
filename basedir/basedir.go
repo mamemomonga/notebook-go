@@ -41,12 +41,14 @@ var (
 /*
 GetRel ベースディレクトリからの相対位置から絶対位置を得る
 
-  　main.Version が空ならば Makefileから生成されていないため、
-  go run や go build で実行されている可能性がある。
-  その場合、カレントディレクトリから OffsetFromWd分移動し、rel分移動した相対位置を返す
+Versionが空
 
-  　main.Versionが定義済みならば、Maikefileから生成されているため、
-  実行バイナリからOffsetFromBin分移動した上での相対位置を返す
+Makefileから生成されていないため、go run や go build で実行されている可能性がある。
+その場合、カレントディレクトリから OffsetFromWd分移動し、rel分移動した相対位置を返す。
+
+Versionがに値がある
+
+Maikefileから生成されているため、 実行バイナリからOffsetFromBin分移動した上での相対位置を返す。
 
 */
 func GetRel(rel string) string {
