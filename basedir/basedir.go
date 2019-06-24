@@ -41,12 +41,12 @@ var (
 /*
 GetRel ベースディレクトリからの相対位置から絶対位置を得る
 
-Versionが空
+Versionが空である
 
 Makefileから生成されていないため、go run や go build で実行されている可能性がある。
 その場合、カレントディレクトリから OffsetFromWd分移動し、rel分移動した相対位置を返す。
 
-Versionがに値がある
+Versionに値がある
 
 Maikefileから生成されているため、 実行バイナリからOffsetFromBin分移動した上での相対位置を返す。
 

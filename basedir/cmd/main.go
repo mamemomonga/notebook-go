@@ -1,9 +1,12 @@
-// ベースディレクトリの取得
-/*
+// Copyright mamemomonga. All rights reserved
 
-Usage:
+/* 
+動作デモ
 
-	go run .
+Usage
+
+	go run ./cmd/
+
 
 */
 package main

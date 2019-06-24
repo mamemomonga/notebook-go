@@ -1,5 +1,7 @@
 # ベースディレクトリ
 
+[![GoDoc](https://godoc.org/github.com/mamemomonga/notebook-go/basedir?status.svg)](https://godoc.org/github.com/mamemomonga/notebook-go/basedir)
+
 * 実行バイナリからの相対位置、go run から実行されている場合はカレントディレクトリを得る
 * フォルダがなければ新規に作成する
 
@@ -13,7 +15,7 @@
 
 ## basedir.GetRel(rel string)
 
-こちらを参照 [![GoDoc](https://godoc.org/github.com/mamemomonga/notebook-go/basedir?status.svg)](https://godoc.org/github.com/mamemomonga/notebook-go/basedir)
+[こちらを参照](https://godoc.org/github.com/mamemomonga/notebook-go/basedir)
 
 ## メモ
 
@@ -24,7 +26,7 @@
 
 Makefileのある位置から実行した場合、すべてBasedirが同じになっていればOK
 
-	$ go run
+	$ go run ./cmd/
 	2019/06/24 12:15:04 Version:  Revision:
 	2019/06/24 12:15:04 Basedir: (略)/notebook-go/basedir
 	2019/06/24 12:15:04 Mkdir: (略)/notebook-go/basedir/var
