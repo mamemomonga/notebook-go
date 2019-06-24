@@ -1,5 +1,8 @@
 # Goの手帳
 
+こちらのファイルは以下のリンクからリファレンスを参照できます。
+なお、頻繁に更新されるため、外部プログラムからimportされることはおすすめしません。
+
 [![GoDoc](https://godoc.org/github.com/mamemomonga/notebook-go?status.svg)](https://godoc.org/github.com/mamemomonga/notebook-go)
 
 忘れっぽいので
