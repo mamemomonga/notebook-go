@@ -11,12 +11,9 @@
 * make multiarch でマルチアーキテクチャ スタティックリンク版が生成される
 * スタティックリンク版ではCGOは使用できない
 
-## GetBaseDirRel(rel string)
+## basedir.GetRel(rel string)
 
-* 設定ファイルを実行バイナリの近くの決まった位置に配置したい場合に使用。
-* 素の go run, go build で実行された場合はVersion, Revisionが空になる。
-* Versionが空の場合は go run で実行されている可能性があるため、カレントディレクトリをからrelへの絶対パスを返す。
-* Versionが定義済みの場合は Makefileからビルドされているため、実行バイナリBaseDirOffset移動した位置からrelへの絶対パスを返す。
+こちらを参照 [![GoDoc](https://godoc.org/github.com/mamemomonga/notebook-go/basedir?status.svg)](https://godoc.org/github.com/mamemomonga/notebook-go/basedir)
 
 ## メモ
 
