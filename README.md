@@ -8,9 +8,9 @@
 忘れっぽいので
 
 ## 構造・ビルド
+* [Goアプリのビルド(Docker)](./build)
 * [Object指向風の書き方](./objlike)
 * [ゴルーチン・チャンネル・Mutex](./goroutine)
-* [DockerでGoアプリのビルド](./dockergobuilder)
 
 ## データ・ファイル・パス
 * [YAMLとJSONの読み書き](./yamljson)
