@@ -38,6 +38,7 @@
 
 ## API
 * [GoからのDocker操作](./api/docker)
-* [GCEのインスタンス情報を取得する](./api/gce-instance)
+* [Google Compute Cloud](./api/gce)
+* [Amazon Web Services](./api/aws)
 
 
