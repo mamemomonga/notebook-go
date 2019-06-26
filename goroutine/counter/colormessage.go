@@ -1,0 +1,1 @@
+../../cli/colormessage/colormessage.go
