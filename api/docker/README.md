@@ -5,9 +5,9 @@
 * https://docs.docker.com/v17.12/develop/sdk/examples/
 
 
-# go mod(vgo)を使うと github.com/docker/docker で問題が起こる件
+# mod.go(vgo)を使うと github.com/docker/docker で問題が起こる件
 
-go mod(vgo)を使うと github.com/docker/docker がうまく動作しない。どうも古いバージョンをとってきてしまうらしい。
+mod.go(vgo)を使うと github.com/docker/docker がうまく動作しない。どうも古いバージョンをとってきてしまうらしい。github.com/docker/docker は github.com/moby/moby に名前が変わっていたりするのも原因としてあるのかもしれない。なお、mod.goを使わなければ何もしなくても問題なく動作する。
 
 以下の方法で解決可能
 
@@ -15,5 +15,5 @@ go mod(vgo)を使うと github.com/docker/docker がうまく動作しない。�
 
 最後のハッシュ値は、https://github.com/moby/moby のmasterのコミットハッシュをコピペすればよい。
 
-参考: https://github.com/wagoodman/dive/issues/86 #まめもめも
+参考: https://github.com/wagoodman/dive/issues/86
 
