@@ -11,27 +11,35 @@ VERSION   := v$(shell cat version)
 # revisionファイルがあればそこから取得する
 REVISION  := $(shell if [ -e revision ]; then cat revision; else git rev-parse --short HEAD; fi)
 
+# buildinfo の インポートパス
+BUILDINFO_IMPORT := github.com/mamemomonga/notebook-go/build/go/sampleapp/buildinfo
+
+# buildinfo の埋め込み
+BUILDINFO_ARGS :=-X '$(BUILDINFO_IMPORT).Version=$(VERSION)' -X '$(BUILDINFO_IMPORT).Revision=$(REVISION)'
+
 # 標準ビルド(dynamic)
 BUILDARGS := GO111MODULE=on \
-	go build -a \
-	-ldflags="-s -w -X 'main.Version=$(VERSION)' -X 'main.Revision=$(REVISION)'"
+	go build -mod vendor -a -ldflags="-s -w $(BUILDINFO_ARGS)"
 
 # 静的ビルド(static)
 BUILDARGS_STATIC := GO111MODULE=on CGO_ENABLED=0 \
-	go build -a -tags netgo -installsuffix netgo \
-	-ldflags="-s -w -X 'main.Version=$(VERSION)' -X 'main.Revision=$(REVISION)' -extldflags '-static'"
+	go build -mod vendor -a -tags netgo -installsuffix netgo \
+	-ldflags="-s -w $(BUILDINFO_ARGS) -extldflags '-static'"
+
+# ソースのあるディレクトリ
+SRCDIR := ./go
 
 # main()のあるディレクトリ
-MAINSRCDIR := ./go/sampleapp
+MAINSRCDIR := $(SRCDIR)/sampleapp
 
 # すべてのソース
-SRCS := $(shell find ./ -name '*.go')
+SRCS := $(shell find $(SRCDIR) -name '*.go')
 
 # 出力ディレクトリ
 BINDIR := bin
 
 # Dockerイメージ
-DOCKER_IMAGE=docker-go-build
+DOCKER_IMAGE=builder-$(NAME)
 
 # -----------------------------------------
 
@@ -43,8 +51,8 @@ static: BUILDARGS=$(BUILDARGS_STATIC)
 static: $(BINDIR)/$(NAME)
 
 # 実行バイナリ
-$(BINDIR)/$(NAME):
-	$(BUILDARGS) -o $(BINDIR)/$(NAME) ./$(MAINSRCDIR)/
+$(BINDIR)/$(NAME): $(SRCDIR)/vendor
+	cd $(MAINSRCDIR) && $(BUILDARGS) -o $(abspath $(BINDIR)/$(NAME))
 
 # マルチアーキテクチャ
 # 対応リスト https://golang.org/doc/install/source#environment
@@ -55,10 +63,14 @@ multiarch:
 	GOOS=linux   GOARCH=arm64 $(MAKE) multiarch-build
 	GOOS=linux   GOARCH=arm   $(MAKE) multiarch-build
 
-multiarch-build:
+multiarch-build: $(SRCDIR)/vendor
 	cd $(MAINSRCDIR) && $(BUILDARGS_STATIC) -o $(abspath $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH))
-
 	@if [ "$(GOOS)" == "windows" ]; then mv $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH) $(BINDIR)/$(NAME)-$(GOOS)-$(GOARCH).exe; fi
+
+# vendorダウンロード
+vendor: $(SRCDIR)/vendor
+$(SRCDIR)/vendor:
+	cd $(SRCDIR) && go mod vendor
 
 # 掃除
 clean:
@@ -74,5 +86,5 @@ docker:
 rmi:
 	docker rmi $(DOCKER_IMAGE)
 
-.PHONY: dynamic static build clean multiarch multiarch-build
+.PHONY: dynamic static build clean multiarch multiarch-build vendor
 

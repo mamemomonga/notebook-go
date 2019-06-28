@@ -21,36 +21,19 @@
 package cmd
 
 import (
-	"github.com/davecgh/go-spew/spew"
-	"github.com/mamemomonga/notebook-go/pokemondata"
+	"fmt"
+	"github.com/mamemomonga/notebook-go/build/go/sampleapp/buildinfo"
 	"github.com/spf13/cobra"
 )
 
-// dumpPokemonsCmd represents the dumpPokemons command
-var dumpPokemonsCmd = &cobra.Command{
-	Use:   "pokemons",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+var versionCmd = &cobra.Command{
+	Use:   "version",
+	Short: "Print version",
 	Run: func(cmd *cobra.Command, args []string) {
-		spew.Dump(pokemondata.InitData())
+		fmt.Printf("Version: %s Revision: %s\n", buildinfo.Version, buildinfo.Revision)
 	},
 }
 
 func init() {
-	dumpCmd.AddCommand(dumpPokemonsCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// dumpPokemonsCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// dumpPokemonsCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.AddCommand(versionCmd)
 }
