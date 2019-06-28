@@ -16,6 +16,14 @@ download() {
 	curl -sL $RAWURL/$p > $d
 }
 
+# download() {
+# 	local p=$1
+# 	local d
+# 	if [ -n "${2:-}" ]; then d=$2; else d=$1; fi
+# 	echo " Copy $p -> $d"
+# 	cp $BASEDIR/$p $d
+# }
+
 if [ -z "${1:-}" ]; then usage; fi
 APPPATH=$1
 APPNAME=$(basename $APPPATH)
@@ -26,7 +34,8 @@ cd $APPNAME
 go mod init $APPPATH
 download Dockerfile
 download Makefile
-# perl -i -npE 's#sampleapp#'$APPNAME'#sg' Makefile
+download build.mk
+perl -i -npE 's#sampleapp#'$APPNAME'#sg' Makefile
 
 download build.mk
 mkdir -p $APPNAME/buildinfo
