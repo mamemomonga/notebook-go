@@ -49,7 +49,8 @@ func main() {
 	fmt.Printf("Version: %s Revision: %s\n",buildinfo.Version, buildinfo.Revision)
 }
 EOS
-
-NAME=APPNAME make 
+set -x
+NAME=$APPNAME make 
 
 bin/$APPNAME
+
