@@ -14,7 +14,6 @@ ADD . /g/
 # ADD Makefile     /g/
 # ADD version      /g/
 # ADD revision     /g/
-# ADD build.mk     /g/
 # ADD go.mod       /g/
 # ADD go.sum       /g/
 
