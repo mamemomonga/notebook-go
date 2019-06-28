@@ -1,10 +1,12 @@
 #!/bin/bash
+# ひな形から作成
+
 set -eu
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 RAWURL=https://raw.githubusercontent.com/mamemomonga/notebook-go/master/build
 
 usage() {
-	echo "USAGE: $0 app_path"
+	echo "USAGE: $0 import_path"
 	exit 1
 }
 
@@ -32,6 +34,8 @@ mkdir -v $APPNAME
 cd $APPNAME
 
 go mod init $APPPATH
+mkdir vendor
+
 download Dockerfile
 download Makefile
 download build.mk
@@ -42,7 +46,6 @@ mkdir -p $APPNAME/buildinfo
 download sampleapp/buildinfo/buildinfo.go $APPNAME/buildinfo/buildinfo.go
 
 echo '0.0.0' > version
-echo '0' > revision
 
 mkdir -p $APPNAME
 cat > $APPNAME/main.go << EOS
@@ -58,6 +61,20 @@ func main() {
 	fmt.Printf("Version: %s Revision: %s\n",buildinfo.Version, buildinfo.Revision)
 }
 EOS
+
+cat > .gitignore << 'EOS'
+/revision
+/bin
+/vendor
+EOS
+
+cat > .dockerignore << 'EOS'
+EOS
+
+git init
+git add .
+git commit -a -m 'initial import'
+
 set -x
 NAME=$APPNAME make 
 

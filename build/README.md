@@ -39,3 +39,12 @@ Dockerで、複数OS,ARCHのスタティックリンク版のビルド
 vendor ディレクトリの用意
 
 	$ make vendor
+
+# この内容をひな形としてアプリを生成する
+
+下記のコマンドを実行すると、カレントディレクトリに github.com/mamemomonga/hogehogeapp を Import Pathとした hogehogeapp が作成される。github.com/mamemomonga/hogehogeapp のところを任意のものに変更することで、これをひな形としたアプリケーションの骨組みを作成することができる。
+
+	$ curl -sL https://raw.githubusercontent.com/mamemomonga/notebook-go/master/build/template.sh | bash /dev/stdin github.com/mamemomonga/hogehogeapp
+
+これは実験的な機能です。
+
