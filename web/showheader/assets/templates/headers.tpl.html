@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+
+<meta charset="utf-8">
+
+<title>Headers</title>
+
+<meta name="viewport" content="width=device-width">
+
+<style type="text/css">
+	body {
+		font-size: 12px;
+	    font-family: sans-serif;
+		padding: 20px;
+	}
+	table {
+		border-collapse: collapse;
+	}
+	table th {
+		border: 1px solid black;
+		padding: 10px;
+		background-color: #EEEEEE;
+	}
+	table td {
+		border: 1px solid black;
+		padding: 10px;
+	}
+  .container {
+  }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<img src="/static/header.png"><br>
+
+<h1>http.Request</h1>
+<table>
+<tr><th>Method</th>           <td>{{ .Req.Method }}</td></tr>
+<tr><th>URL</th>              <td>{{ .Req.URL }}</td></tr>
+<tr><th>Proto</th>            <td>{{ .Req.Proto }}</td></tr>
+<tr><th>ProtoMajor</th>       <td>{{ .Req.ProtoMajor }}</td></tr>
+<tr><th>ProtoMinor</th>       <td>{{ .Req.ProtoMinor }}</td></tr>
+<tr><th>Body</th>             <td>{{ .Req.Body }}</td></tr>
+<tr><th>ContentLength</th>    <td>{{ .Req.ContentLength }}</td></tr>
+<tr><th>TransferEncoding</th> <td>{{ .Req.TransferEncoding }}</td></tr>
+<tr><th>Close</th>            <td>{{ .Req.Close }}</td></tr>
+<tr><th>Host</th>             <td>{{ .Req.Host }}</td></tr>
+<tr><th>RemoteAddr</th>       <td>{{ .Req.RemoteAddr }}</td></tr>
+<tr><th>RequestURI</th>       <td>{{ .Req.RequestURI }}</td></tr>
+<tr><th>TLS</th>              <td>{{ .Req.TLS }}</td></tr>
+</table>
+
+<h1>Request Headers</h1>
+<table>
+{{ range .Headers }}
+<tr>
+<th>{{ .K }}</th>
+{{ range .V }}<td>{{ . }}<br>{{ end }}</td></tr>
+{{ end }}
+</table>
+
+<a href="https://golang.org/pkg/net/http/#Request" target="_blank">https://golang.org/pkg/net/http/#Request</a>
+
+</div>
+</body>
