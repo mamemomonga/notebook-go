@@ -22,7 +22,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/mamemomonga/notebook-go/build/go/sampleapp/buildinfo"
+	"github.com/mamemomonga/notebook-go/build/sampleapp/buildinfo"
 	"github.com/spf13/cobra"
 )
 

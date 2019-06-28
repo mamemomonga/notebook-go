@@ -20,7 +20,7 @@
 
 package main
 
-import "github.com/mamemomonga/notebook-go/build/go/sampleapp/cmd"
+import "github.com/mamemomonga/notebook-go/build/sampleapp/cmd"
 
 // var (
 // 	Version string

@@ -1,4 +1,4 @@
-module github.com/mamemomonga/notebook-go/build/go
+module github.com/mamemomonga/notebook-go/build
 
 go 1.12
 
