@@ -1,5 +1,8 @@
 # 実行ファイルおよびpackage main のあるディレクトリ
-NAME := sampleapp
+# NAME=hogehoge make と言う形で設定することもできる
+ifndef NAME
+	NAME := sampleapp
+endif
 
 # ------------------------------------------------------------------
 

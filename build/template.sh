@@ -26,7 +26,7 @@ cd $APPNAME
 go mod init $APPPATH
 download Dockerfile
 download Makefile
-perl -i -npE 's#sampleapp#'$APPNAME'#sg' Makefile
+# perl -i -npE 's#sampleapp#'$APPNAME'#sg' Makefile
 
 download build.mk
 mkdir -p $APPNAME/buildinfo
@@ -49,5 +49,7 @@ func main() {
 	fmt.Printf("Version: %s Revision: %s\n",buildinfo.Version, buildinfo.Revision)
 }
 EOS
-make
+
+NAME=APPNAME make 
+
 bin/$APPNAME
