@@ -7,11 +7,8 @@ ENV GOPATH=/go
 ENV GOBIN=/go/bin
 ENV GO111MODULE=on
 
-ADD go       /app/go
-ADD Makefile /app/
-ADD version  /app/
-ADD revision /app/
-
+ADD . /app/
 WORKDIR /app
+
 RUN set -xe && make multiarch
 
