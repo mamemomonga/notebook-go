@@ -31,16 +31,16 @@
 ## プロセス
 * [コマンドの実行](./runcommand)
 
-## ネット
-* [インターネットからファイルをとってくる](./httpfetch)
-
 ## 演算
 * [ビット演算](./bitoperation)
 * [日付と時間](./datetime)
 
+## Web
+* [インターネットからファイルをとってくる](./web/fetch)
+* [ヘッダの表示とウェブサーバとコンテンツの埋め込み](./web/showheader)
+
 ## API
-* [GoからのDocker操作](./api/docker)
+* [Docker](./api/docker)
 * [Google Compute Cloud](./api/gce)
 * [Amazon Web Services](./api/aws)
-
 
