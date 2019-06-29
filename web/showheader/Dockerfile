@@ -9,13 +9,5 @@ ENV GO111MODULE=on
 
 ADD . /g/
 
-# ADD ./vendor/    /g/vendor/
-# ADD ./sampleapp/ /g/sampleapp/
-# ADD Makefile     /g/
-# ADD version      /g/
-# ADD revision     /g/
-# ADD go.mod       /g/
-# ADD go.sum       /g/
-
 WORKDIR /g
-RUN set -xe && make multiarch
+RUN set -xe && make full

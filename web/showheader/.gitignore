@@ -1,3 +1,8 @@
 /revision
 /bin
 /vendor
+
+# packr
+/showheader/packrd/
+/showheader/web/web-packr.go
+
