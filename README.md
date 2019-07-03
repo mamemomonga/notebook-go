@@ -38,6 +38,7 @@
 ## Web
 * [インターネットからファイルをとってくる](./web/fetch)
 * [ヘッダの表示とウェブサーバとコンテンツの埋め込み](./web/showheader)
+* [SSHでコマンドの実行](./web/ssh)
 
 ## API
 * [Docker](./api/docker)
