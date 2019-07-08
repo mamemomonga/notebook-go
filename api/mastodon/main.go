@@ -1,15 +1,14 @@
 package main
 
 import (
+	"flag"
+	"github.com/comail/colog"
+	don "github.com/mamemomonga/notebook-go/api/mastodon/mastodon/simple"
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
-	"flag"
 	"time"
-	"github.com/comail/colog"
-	don "github.com/mamemomonga/notebook-go/api/mastodon/mastodon/simple"
 )
-
 
 // Locationの設定
 const Location = "Asia/Tokyo"
@@ -20,8 +19,8 @@ func init() {
 	colog.SetDefaultLevel(colog.LDebug)
 	colog.SetMinLevel(colog.LTrace)
 	colog.SetFormatter(&colog.StdFormatter{
-	        Colors: true,
-	        Flag:   log.Ldate | log.Ltime | log.Lshortfile,
+		Colors: true,
+		Flag:   log.Ldate | log.Ltime | log.Lshortfile,
 	})
 	colog.Register()
 
@@ -49,8 +48,8 @@ func main() {
 
 	// フラグの読込
 	fgc := flag.String("c", "./etc/config.yaml", "設定ファイル")
-	fgt := flag.String("t", "","トゥート")
-	fgh := flag.Bool("h", false,"ホームタイムライン")
+	fgt := flag.String("t", "", "トゥート")
+	fgh := flag.Bool("h", false, "ホームタイムライン")
 	flag.Parse()
 
 	// 設定ファイルの読み込み
@@ -104,4 +103,3 @@ func readConfigYAML(filename string) (data *Config, err error) {
 	log.Printf("Read: %s", filename)
 	return data, nil
 }
-

@@ -1,38 +1,38 @@
 package simple
 
 import (
+	"context"
+	"encoding/json"
 	"fmt"
+	"github.com/davecgh/go-spew/spew"
+	"github.com/mattn/go-mastodon"
+	"github.com/microcosm-cc/bluemonday"
+	"io/ioutil"
 	"log"
 	"os"
 	"time"
-	"context"
-	"io/ioutil"
-	"encoding/json"
-	"github.com/mattn/go-mastodon"
-	"github.com/microcosm-cc/bluemonday"
-	"github.com/davecgh/go-spew/spew"
 )
 
-const Debug=true
+const Debug = true
 
 func logDebug(s string) {
-	if ! Debug {
+	if !Debug {
 		return
 	}
-	log.Printf("debug: %s",s)
+	log.Printf("debug: %s", s)
 }
 func spewDump(s interface{}) {
-	if ! Debug {
+	if !Debug {
 		return
 	}
 	spew.Dump(s)
 }
 
 type Mastodon struct {
-	c        *MastodonConfig
-	client   *mastodon.Client
-	Ready    bool
-	lastToot string
+	c                  *MastodonConfig
+	client             *mastodon.Client
+	Ready              bool
+	lastToot           string
 	AccountCurrentUser *mastodon.Account
 }
 
@@ -101,7 +101,7 @@ func (t *Mastodon) Connect() (err error) {
 	if err != nil {
 		return err
 	}
-	t.AccountCurrentUser=account
+	t.AccountCurrentUser = account
 	t.Ready = true
 	return nil
 }
@@ -142,14 +142,14 @@ func (t *Mastodon) Toot(s string) error {
 	if err != nil {
 		return err
 	}
-	logDebug(fmt.Sprintf("Toot: %s",toot.Status))
+	logDebug(fmt.Sprintf("Toot: %s", toot.Status))
 	return nil
 }
 
 func (t *Mastodon) HomeTimeline(page int) error {
 	ctx := context.Background()
-	err := t.tlPages( page, func(pg *mastodon.Pagination) ([]*mastodon.Status, error){
-		return t.client.GetTimelineHome(ctx,pg)
+	err := t.tlPages(page, func(pg *mastodon.Pagination) ([]*mastodon.Status, error) {
+		return t.client.GetTimelineHome(ctx, pg)
 	})
 	if err != nil {
 		return err
@@ -160,7 +160,7 @@ func (t *Mastodon) HomeTimeline(page int) error {
 func (t *Mastodon) TailHomeTimeline() error {
 	wsc := t.client.NewWSClient()
 	ctx := context.Background()
-	q,err := wsc.StreamingWSUser(ctx)
+	q, err := wsc.StreamingWSUser(ctx)
 	if err != nil {
 		return err
 	}
@@ -172,11 +172,10 @@ func (t *Mastodon) TailHomeTimeline() error {
 	return nil
 }
 
-
-func (t *Mastodon) tlPages(max int, f func(*mastodon.Pagination) ([]*mastodon.Status, error) ) error {
+func (t *Mastodon) tlPages(max int, f func(*mastodon.Pagination) ([]*mastodon.Status, error)) error {
 	var statuses []*mastodon.Status
 	var maxid mastodon.ID
-	for i:=0; i < max; i++ {
+	for i := 0; i < max; i++ {
 		pg := mastodon.Pagination{
 			MaxID: maxid,
 			Limit: 40,
@@ -186,7 +185,7 @@ func (t *Mastodon) tlPages(max int, f func(*mastodon.Pagination) ([]*mastodon.St
 			return err
 		}
 		// spewDump(pg)
-		statuses=append(statuses,s...)
+		statuses = append(statuses, s...)
 		if pg.MaxID == "" {
 			break
 		}
@@ -194,7 +193,7 @@ func (t *Mastodon) tlPages(max int, f func(*mastodon.Pagination) ([]*mastodon.St
 		time.Sleep(time.Second)
 	}
 	statuses = t.reverseStatuses(statuses)
-	for _,v := range statuses {
+	for _, v := range statuses {
 		t.displayTimeline(v)
 	}
 	return nil
@@ -203,16 +202,16 @@ func (t *Mastodon) tlPages(max int, f func(*mastodon.Pagination) ([]*mastodon.St
 func (t *Mastodon) displayTimeline(s *mastodon.Status) {
 	createdAt := s.CreatedAt.In(time.Local).Format(time.RFC3339)
 	content := bluemonday.StrictPolicy().Sanitize(s.Content)
-	fmt.Printf("[%s] (%s) %s\n",createdAt, s.Account.Username, s.Account.DisplayName)
-	fmt.Printf(" %s\n",content)
+	fmt.Printf("[%s] (%s) %s\n", createdAt, s.Account.Username, s.Account.DisplayName)
+	fmt.Printf(" %s\n", content)
 	fmt.Println("")
 }
 
 func (t *Mastodon) reverseStatuses(s []*mastodon.Status) []*mastodon.Status {
 	r := []*mastodon.Status{}
-	e := len(s)-1
-	for i:=0; i<=e; i++ {
-		r = append(r,s[e-i])
+	e := len(s) - 1
+	for i := 0; i <= e; i++ {
+		r = append(r, s[e-i])
 	}
 	return r
 }
