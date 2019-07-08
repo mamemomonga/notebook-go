@@ -10,9 +10,10 @@ import (
 	"time"
 )
 
-// Locationの設定
+// Location ローカルタイムの場所を設定
 const Location = "Asia/Tokyo"
 
+// 初期化
 func init() {
 
 	// cologの設定
@@ -34,7 +35,7 @@ func init() {
 	time.Local = loc
 }
 
-// 設定ファイルの構造
+// Config 設定ファイルの構造
 type Config struct {
 	Server     string `yaml:"server"`
 	Email      string `yaml:"email"`
