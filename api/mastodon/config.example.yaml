@@ -1,0 +1,5 @@
+server: raspidon.mamemo.online
+email: address@example.com
+password: PASSWORD
+client_name: example
+client_file: ./etc/client.json
