@@ -49,7 +49,8 @@ func main() {
 
 	// フラグの読込
 	fgc := flag.String("c", "./etc/config.yaml", "設定ファイル")
-	fgt := flag.String("t", "", "トゥート")
+	fgt := flag.String("t", "", "トゥート内容")
+	fga := flag.String("a", "", "指定したファイルを添付してトゥート")
 	fgh := flag.Bool("h", false, "ホームタイムライン")
 	flag.Parse()
 
@@ -74,8 +75,16 @@ func main() {
 
 	// トゥートする
 	if *fgt != "" {
-		if err := d.Toot(*fgt); err != nil {
+		if *fga == "" {
+			// 添付なしでトゥートする
+			if err := d.Toot(*fgt); err != nil {
+				log.Fatal(err)
+			}
+		} else {
+			// ファイルを添付してトゥートする
+			if err := d.TootWithAttachment(*fgt,*fga); err != nil {
 			log.Fatal(err)
+			}
 		}
 	}
 

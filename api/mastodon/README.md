@@ -4,11 +4,17 @@
 
 マストドンAPI用サンプルコード
 
-	$ go run . --help
+	$ go run ./easydon --help
 	
-	  -c string
-	        設定ファイル (default "./etc/config.yaml")
-	  -h    ホームタイムライン
-	  -t string
-	        トゥート
+	-a string
+	      指定したファイルを添付してトゥート
+	-c string
+	      設定ファイル (default "./etc/config.yaml")
+	-h    ホームタイムライン
+	-t string
+	      トゥート内容
+
+ビルド
+
+	$ go build -o bin/easydon ./easydon
 

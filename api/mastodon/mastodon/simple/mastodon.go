@@ -168,6 +168,36 @@ func (t *Mastodon) Toot(s string) error {
 	return nil
 }
 
+// TootWithAttachment メディアをアップロードしてトゥートする
+func (t *Mastodon) TootWithAttachment(s string, fn string) error {
+	if !t.Ready {
+		return nil
+	}
+	ctx := context.Background()
+	log.Println("info: Uploading...")
+
+	at,err := t.client.UploadMedia(ctx,fn)
+	if err != nil {
+		return err
+	}
+
+	spewDump(at)
+
+	toot := mastodon.Toot{
+		Status: s,
+		MediaIDs: []mastodon.ID{ at.ID },
+	}
+
+	_, err = t.client.PostStatus(ctx, &toot)
+	if err != nil {
+		return err
+	}
+	logDebug(fmt.Sprintf("Toot: %s", toot.Status))
+	return nil
+
+}
+
+
 // HomeTimeline HTLの取得
 func (t *Mastodon) HomeTimeline(page int) error {
 	ctx := context.Background()
