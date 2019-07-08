@@ -1,5 +1,19 @@
+# このファイルを書き換えて etc/config.yaml として設定するか
+# -c オプションで参照してください
+
+# マストドンサーバ
 server: raspidon.mamemo.online
+
+# メールアドレス
 email: address@example.com
+
+# パスワード
 password: PASSWORD
+
+# クライアントソフトウェアの名前
 client_name: example
+
+# クライアント情報保存ファイル
+# (なければ自動的につくられる)
 client_file: ./etc/client.json
+
