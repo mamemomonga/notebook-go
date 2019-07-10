@@ -17,3 +17,5 @@ client_name: example
 # (なければ自動的につくられる)
 client_file: ./etc/client.json
 
+old_toots_pages: 3
+verbose: true
