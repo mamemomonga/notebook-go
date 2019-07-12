@@ -15,7 +15,7 @@
 * [チャンネル・Mutex](./goroutine/counter)
 
 ## データ・ファイル・パス
-* [YAMLとJSONの読み書き](./yamljson)
+* [YAMLとJSONの読み書き](./datafile/yamljson)
 * [値のダンプ](./dump)
 * [テンプレート](./template)
 * [ベースディレクトリ](./basedir)
