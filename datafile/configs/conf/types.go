@@ -9,7 +9,7 @@ type Configs struct {
 	Users      []string `yaml:"users"`
 }
 
-// States 状態データの出意義
+// States 状態データの定義
 type States struct {
 	Passwords map[string]string `json:"passwords"`
 }
