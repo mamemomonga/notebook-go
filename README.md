@@ -16,6 +16,8 @@
 
 ## データ・ファイル・パス
 * [YAMLとJSONの読み書き](./datafile/yamljson)
+* [設定の読込と状態の保存](./datafile/configs)
+
 * [値のダンプ](./dump)
 * [テンプレート](./template)
 * [ベースディレクトリ](./basedir)
