@@ -1,0 +1,11 @@
+version: "3.7"
+
+networks:
+   default:
+
+services:
+   redis:
+      hostname: redis
+      image: redis:5.0.5-alpine
+      ports: ["16379:6379"]
+
