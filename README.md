@@ -39,7 +39,8 @@
 * [文字列関連のいろいろ](./strings)
 
 ## Web
-* [インターネットからファイルをとってくる](./web/fetch)
+* [インターネットからファイルをとってくる](./web/fetchFile)
+* [URLをGetで取得し内容を表示する](./web/fetchURL
 * [ヘッダの表示とウェブサーバとコンテンツの埋め込み](./web/showheader)
 * [SSHでコマンドの実行](./web/ssh)
 
