@@ -19,15 +19,22 @@ app2 では、以下のパスにあるconfig.yaml, .config.yaml, config.yml, .co
 
 ### フラグの取得とチェック
 
+### ダイナミックビルド
+
+	$ make
+
 ### 公開向けのDockerコンテナ内で、マルチアーキテクチャ向けスタティックビルド
 
+	$ make docker
+
 ### バージョン番号の埋め込み
+
+versionファイルにバージョン、revisionは現在のブランチのCommit Hashをビルド時にバイナリに埋め込みます。
 
 # 実行例
 
 	$ go run ./src/cmd/sampleapp cmd1 -a -b "bbb" -c "ccc"
 	$ go run ./src/cmd/sampleapp cmd2 -b "bbb"
-
 	$ make
-	$ make docker
+	$ bin/sampleapp cmd1 -b "bbb" -c "ccc"
 	
