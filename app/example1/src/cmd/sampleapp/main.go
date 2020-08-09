@@ -31,6 +31,7 @@ func main() {
 		Long:  fmt.Sprintf("サンプルプログラム(Long) %s",verString),
 		Version: verString,
 		// サブコマンドでも実行前に実行
+		// サブコマンドに設定すると上書きされる
 		PersistentPreRun: PersistentPreRun,
 	}
 
