@@ -1,30 +1,37 @@
 package main
 
 import (
+	"context"
 	"log"
 	"time"
 )
 
 func main() {
 
-	sil := NewSigintListener()
+	ctx := sigIntContext(context.Background())
 
-	go func() {
-		defer func() {
-			log.Println("info: 終了処理をしています")
-			sil.Done()
-		}()
+	done := make(chan bool, 1)
+	go process(ctx, done)
+	<-done
+}
 
-		for i := 0; i < 30; i++ {
-			log.Printf("info: %d/30\n", i)
-			time.Sleep(time.Second)
-			if sil.IsStop() {
-				log.Println("info: 終了処理を受信しました")
-				return
-			}
-		}
+func process(ctx context.Context, done chan bool) {
 
+	// 終了処理
+	defer func() {
+		log.Println("info: 終了処理")
+		done <- true
 	}()
 
-	sil.Start()
+	for i := 0; i < 30; i++ {
+		log.Printf("info: %d/30\n", i)
+		time.Sleep(time.Second)
+
+		select {
+		case <-ctx.Done():
+			return
+		default:
+		}
+
+	}
 }
