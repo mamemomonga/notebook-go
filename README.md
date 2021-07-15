@@ -13,6 +13,8 @@
 
 ## ゴルーチン
 * [チャンネル・Mutex](./goroutine/counter)
+* [Context1](./goroutine/context1)
+* [Context2](./goroutine/context2)
 
 ## データ・ファイル・パス
 * [YAMLとJSONの読み書き](./datafile/yamljson)
