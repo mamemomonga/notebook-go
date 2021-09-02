@@ -1,0 +1,19 @@
+syntax = "proto3";
+option go_package = "example.com/grpc-souhoukou/pb";
+
+package helloworld;
+
+service SouHouKou {
+  rpc Chat (stream ChatRequest) returns (stream ChatReply) {}
+}
+
+message ChatRequest {
+	int32 serial = 1;
+	int32 id = 2;
+	string message = 3;
+}
+
+message ChatReply {
+	int32 serial = 1;
+	string message = 2;
+}
