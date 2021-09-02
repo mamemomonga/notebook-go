@@ -2,7 +2,22 @@
 
 * [双方向通信](./bidirectional)
 
+# 概要
+
+gRPCには送受信それぞれにUnaryとStreamingが選べるため、合計で4種類の通信方法が可能となる。
+
+Client | Server | Name
+-------|--------|------
+Unary | Unary |  Unary RPCs（SimpleRPC)
+Unary | Streaming |  Server streaming RPC
+Streaming | Unary |  Client streaming RPC
+Streaming | Streaming |  Bidirectional streaming RPC
+
+[参考: goでgRPCの4つの通信方式やってみた](https://qiita.com/tomo0/items/310d8ffe82749719e029)
+
 # クイックスタート
+
+これは公式のクイックスタートをベースにした Unary RPCs のサンプルです。protocのインストールや pb.goの生成などは他と同じです。
 
 * https://grpc.io/docs/languages/go/quickstart/
 * https://github.com/grpc/grpc-go/tree/master/examples/helloworld
