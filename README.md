@@ -47,8 +47,13 @@
 * [ヘッダの表示とウェブサーバとコンテンツの埋め込み](./web/showheader)
 * [SSHでコマンドの実行](./web/ssh)
 
+## プロセス間通信など
+
+* [gRPC](./gRPC)
+
 ## API
 * [Docker](./api/docker)
 * [Google Compute Cloud](./api/gce)
 * [Amazon Web Services](./api/aws)
+
 

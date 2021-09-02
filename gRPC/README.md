@@ -26,6 +26,8 @@ Streaming | Streaming |  Bidirectional streaming RPC
 
 protocのインストール
 
+[ここから](https://github.com/protocolbuffers/protobuf/releases/) OSにあった最新のリリースをダウンロード
+
 	$ mkdir protoc
 	$ cd protoc
 	$ curl -o protoc.zip -L https://github.com/protocolbuffers/protobuf/releases/download/v3.17.3/protoc-3.17.3-osx-x86_64.zip
